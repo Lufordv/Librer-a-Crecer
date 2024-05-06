@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Librería CRECER</title> <!-- Título de la web -->
+    <link rel="icon" type="image" href="logo/Favicon.png" > <!-- Agregamos un favicon -->
+    <link rel="stylesheet" href="css/estilo.css"> <!-- Conectamos la hoja de estilo -->
+    <script defer src="funciones/script.js"></script> <!-- Añadimos JS con DEFER para no interrumpir la carga -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Enlazamos la tipografía de google font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- Link para utilizar iconos de font awesome -->
+</head>
+<body>
+    <!-- Agregamos un div en la parte superior con la dirección y el teléfono del cliente -->
+    <div class="contenedor-top"> 
+        <div class="texto texto-animado">
+            <p class="datos">Librería CRECER - C/ Diego Velázquez 12 Toledo - Tlf: 925 999 998 / 666 663 664</p>
+        </div>
+    </div>
+    <!-- Incorporamos el header con la navegación principal, una barra de búsqueda y el logo -->
+    <header>
+        <img src="logo/Logo.svg" alt="logo"> 
+        <div class="busqueda">
+            <input type="text">
+            <!-- Colocamos un micrófono y una lupa dentro de la barra de búsqueda -->
+            <div class="iconos"> 
+                <i class="fa fa-microphone"></i>
+                <i class="fa fa-search"></i>
+            </div>
+        </div>    
+        <!-- Agregamos la navegación principal con cuatro enlaces para cada sección de la página y un botón de cerrar oculto para el menú desplegable -->
+        <nav> 
+            <ul>
+                <li><a href="#Novedades">Novedades</a></li>
+                <li><a href="#Adultos">Adultos</a></li>
+                <li><a href="#Infantil">Infantil</a></li>
+                <li><a href="#Contacto">Contacto</a></li>
+            </ul>
+            <button class="cerrar"><i class="fa fa-times" style="font-size: 1.5rem;"></i></button>
+        </nav>
+        <!-- Añadimos el menú hamburguesa para dispositivos móviles -->
+        <button class="abrir"><i class="fa fa-navicon" style="font-size: 2rem;"></i></button>
+    </header> 
+    <!-- Agregamos un div con la clase contenedor-carrousel para realizar un carrousel de imágenes debajo del header -->
+    <div class="contenedor-carrousel">
+        <!-- Añadimos otro div dentro del contenedor-carrousel para albergar las 4 secciones que a su vez contienen las 4 imágenes del carrousel -->
+        <div class="carrousel" id="deslizador">
+            <!-- Añadimos las 4 secciones --> 
+            <section class="seccion-dinamica">
+                <!-- Incorporamos el h1 al documento en la primera sección -->
+                <h1 class="titulo-principal">Tu librería en Toledo<br>y online</h1> 
+                <button class="boton boton1">Catálogo</button> <!-- Agregamos el botón que acompaña a los títulos -->
+                <img src="img/Carrousel1.jpg" alt="librería Crecer"> <!-- Agregamos la img de cada sección -->
+            </section>
+            <section class="seccion-dinamica">
+                <h2 class="titulo-secundario">Evento<br>"té con letras"</h2>
+                <button class="boton boton2">Más info</button>
+                <img src="img/Carrousel2.jpg" alt="Evento té con letras">
+            </section>
+            <section class="seccion-dinamica">
+                <h2 class="titulo-secundario">Novedades<br>La chica del verano</h2>
+                <button class="boton boton3">Comprar</button>
+                <img src="img/Carrousel3.jpg" alt="Novedad la chica del verano">
+            </section>
+            <section class="seccion-dinamica">
+                <h2 class="titulo-secundario">La mejor literatura<br>infantil</h2>
+                <button class="boton boton4">Consultar</button>
+                <img src="img/Carrousel4.jpg" alt="Literatura infantil">
+            </section>
+        </div>
+        <!-- Añadimos dos iconos flecha para que actuen como botones que nos permiten mover el carrousel -->
+        <div class="boton-izq"><i class="fa fa-angle-left" style = "color: #ffffff;"></i></div> 
+        <div class="boton-der"><i class="fa fa-angle-right" style = "color: #ffffff;"></i></div>
+    </div>
+    <!-- Añadimos las 4 secciones generales que componen nuestra página -->
+    <section class="general" id="Novedades">
+         <!-- Agregamos el enunciado de cada una -->
+        <div class="enunciado">
+            <h2 class="texto-enunciado">Novedades</h2>
+        </div>
+        <!-- Insertamos un contenedor para mostrar los productos -->
+        <div class="contenedor-cards">
+            <!-- Se añaden las cards con la información de los libros. Cada card se compone de:
+                - Imagen del libro
+                - h3 con el título del libro
+                - párrafo descriptivo del libro
+                - Un div que contiene otros 3 divs con la cantidad, el precio y el envío
+                - Botón de compra -->
+            <div class="card card1">
+                <img class="img-book" src="img/Libro1.png" alt="libro la vecina rubia">
+                <h3>La chica del verano</h3>
+                <p class="descripcion">Con La chica del verano concluye la saga Verano. La historia de una adolescente rubia y del personaje anónimo que la acompañará para siempre: la Vecina Rubia.</p>
+                <div class="propiedades">
+                    <div class="cantidad">
+                        <h4>Cantidad</h4>
+                        <i id="restar" class="fa fa-minus" style="font-size: 0.5rem;"></i>
+                        <span class="unidades">1</span>
+                        <i id="sumar" class="fa fa-plus" style="font-size: 0.5rem;"></i>
+                    </div>
+                    <div class="precio">
+                        <h4>Total precio</h4>
+                        <i class="fa fa-eur" style="font-size: 1em;"></i>
+                        <span class="montante" precio-base="14.95">14.95</span>
+                    </div>
+                    <div class="envio">
+                        <h4>Envío</h4>
+                        <i class="fa fa-truck" style="font-size: 0.8em;"></i>
+                        <span class="tiempo">3 días</span>
+                    </div>
+                </div>
+                <input class="carrito" type="button" value="Agregar al carrito">
+            </div>
+            <div class="card card2">
+                <img class="img-book" src="img/Libro2.png" alt="libro la vecina rubia">
+                <h3>Vive más</h3>
+                <p class="descripcion">Aprenderás las claves para morir joven, con muchos años. La última sección resume las tecnologías emergentes que nos en permitirán alargar de manera exponencial nuestra longevidad.</p>
+                <div class="propiedades">
+                    <div class="cantidad">
+                        <h4>Cantidad</h4>
+                        <i id="restar" class="fa fa-minus" style="font-size: 0.5rem;"></i>
+                        <span class="unidades">1</span>
+                        <i id="sumar" class="fa fa-plus" style="font-size: 0.5rem;"></i>
+                    </div>
+                    <div class="precio">
+                        <h4>Total precio</h4>
+                        <i class="fa fa-eur" style="font-size: 1em;"></i>
+                        <span class="montante" precio-base="17.95">17,95</span>
+                    </div>
+                    <div class="envio">
+                        <h4>Envío</h4>
+                        <i class="fa fa-truck" style="font-size: 0.8em;"></i>
+                        <span class="tiempo">3 días</span>
+                    </div>
+                </div>
+                <input class="carrito" type="button" value="Agregar al carrito">
+            </div>
+            <div class="card card3">
+                <img class="img-book" src="img/Libro3.png" alt="libro la vecina rubia">
+                <h3>Holly</h3>
+                <p class="descripcion">La nueva novela del Rey del Terror cuenta con un personaje muy querido por sus fans: Holly Gibney, quien por primera vez protagoniza una novela en solitario.</p>
+                <div class="propiedades">
+                    <div class="cantidad">
+                        <h4>Cantidad</h4>
+                        <i id="restar" class="fa fa-minus" style="font-size: 0.5rem;"></i>
+                        <span class="unidades">1</span>
+                        <i id="sumar" class="fa fa-plus" style="font-size: 0.5rem;"></i>
+                    </div>
+                    <div class="precio">
+                        <h4>Total precio</h4>
+                        <i class="fa fa-eur" style="font-size: 1em;"></i>
+                        <span class="montante" precio-base="19.95">19,95</span>
+                    </div>
+                    <div class="envio">
+                        <h4>Envío</h4>
+                        <i class="fa fa-truck" style="font-size: 0.8em;"></i>
+                        <span class="tiempo">3 días</span>
+                    </div>
+                </div>
+                <input class="carrito" type="button" value="Agregar al carrito">
+            </div>
+            <div class="card card4">
+                <img class="img-book" src="img/Libro4.png" alt="libro la vecina rubia">
+                <h3>Últimas noticias de Jesús</h3>
+                <p class="descripcion">Una fascinante investigación histórica sobre el personaje más importante de todos los tiempos. Un cóctel explosivo que suma fe y ciencia.</p>
+                <div class="propiedades">
+                    <div class="cantidad">
+                        <h4>Cantidad</h4>
+                        <i id="restar" class="fa fa-minus" style="font-size: 0.5rem;"></i>
+                        <span class="unidades">1</span>
+                        <i id="sumar" class="fa fa-plus" style="font-size: 0.5rem;"></i>
+                    </div>
+                    <div class="precio">
+                        <h4>Total precio</h4>
+                        <i class="fa fa-eur" style="font-size: 1em;"></i>
+                        <span class="montante" precio-base="15.95">15,95</span>
+                    </div>
+                    <div class="envio">
+                        <h4>Envío</h4>
+                        <i class="fa fa-truck" style="font-size: 0.8em;"></i>
+                        <span class="tiempo">3 días</span>
+                    </div>
+                </div>
+                <input class="carrito" type="button" value="Agregar al carrito">
+            </div>
+        </div>
+    </section>
+     <!-- Segunda sección -->
+    <section class="general" id="Adultos">
+        <div class="enunciado">
+            <h2 class="texto-enunciado">Literatura para adultos</h2>
+        </div>
+        <div class="contenedor-cards">
+            <div class="card card5">
+                <img class="img-book" src="img/Libro5.png" alt="libro la vecina rubia">
+                <h3>El hilo dorado</h3>
+                <p class="descripcion">La ficción histórica que ha atrapado a miles de lectores. Dos historias de amor entrelazadas, un viaje épico al pasado y un terrible secreto.</p>
+                <div class="propiedades">
+                    <div class="cantidad">
+                        <h4>Cantidad</h4>
+                        <i id="restar" class="fa fa-minus" style="font-size: 0.5rem;"></i>
+                        <span class="unidades">1</span>
+                        <i id="sumar" class="fa fa-plus" style="font-size: 0.5rem;"></i>
+                    </div>
+                    <div class="precio">
+                        <h4>Total precio</h4>
+                        <i class="fa fa-eur" style="font-size: 1em;"></i>
+                        <span class="montante" precio-base="14.95">14.95</span>
+                    </div>
+                    <div class="envio">
+                        <h4>Envío</h4>
+                        <i class="fa fa-truck" style="font-size: 0.8em;"></i>
+                        <span class="tiempo">3 días</span>
+                    </div>
+                </div>
+                <input class="carrito" type="button" value="Agregar al carrito">
+            </div>
+            <div class="card card6">
+                <img class="img-book" src="img/Libro6.png" alt="libro la vecina rubia">
+                <h3>Maldita Roma</h3>
+                <p class="descripcion">Una novela magistral que nos habla sobre el auténtico precio del poder. Julio César está a punto de aprender que Roma lo exige todo, hasta su bien más preciado.</p>
+                <div class="propiedades">
+                    <div class="cantidad">
+                        <h4>Cantidad</h4>
+                        <i id="restar" class="fa fa-minus" style="font-size: 0.5rem;"></i>
+                        <span class="unidades">1</span>
+                        <i id="sumar" class="fa fa-plus" style="font-size: 0.5rem;"></i>
+                    </div>
+                    <div class="precio">
+                        <h4>Total precio</h4>
+                        <i class="fa fa-eur" style="font-size: 1em;"></i>
+                        <span class="montante" precio-base="17.95">17,95</span>
+                    </div>
+                    <div class="envio">
+                        <h4>Envío</h4>
+                        <i class="fa fa-truck" style="font-size: 0.8em;"></i>
+                        <span class="tiempo">3 días</span>
+                    </div>
+                </div>
+                <input class="carrito" type="button" value="Agregar al carrito">
+            </div>
+            <div class="card card7">
+                <img class="img-book" src="img/Libro7.png" alt="libro la vecina rubia">
+                <h3>El poder del ahora</h3>
+                <p class="descripcion">Para adentrarse en EL PODER DEL AHORA tendremos que dejar atrás nuestra mente analítica y su falso yo, el ego. Solo así, podremos conectar con nuestra esencia.</p>
+                <div class="propiedades">
+                    <div class="cantidad">
+                        <h4>Cantidad</h4>
+                        <i id="restar" class="fa fa-minus" style="font-size: 0.5rem;"></i>
+                        <span class="unidades">1</span>
+                        <i id="sumar" class="fa fa-plus" style="font-size: 0.5rem;"></i>
+                    </div>
+                    <div class="precio">
+                        <h4>Total precio</h4>
+                        <i class="fa fa-eur" style="font-size: 1em;"></i>
+                        <span class="montante" precio-base="19.95">19,95</span>
+                    </div>
+                    <div class="envio">
+                        <h4>Envío</h4>
+                        <i class="fa fa-truck" style="font-size: 0.8em;"></i>
+                        <span class="tiempo">3 días</span>
+                    </div>
+                </div>
+                <input class="carrito" type="button" value="Agregar al carrito">
+            </div>
+            <div class="card card8">
+                <img class="img-book" src="img/Libro8.png" alt="libro la vecina rubia">
+                <h3>El arte de la guerra</h3>
+                <p class="descripcion">«Si conoces al enemigo y a ti mismo, tu victoria será segura; si conoces el Cielo y conoces la Tierra, puedes lograr que tu victoria sea completa».</p>
+                <div class="propiedades">
+                    <div class="cantidad">
+                        <h4>Cantidad</h4>
+                        <i id="restar" class="fa fa-minus" style="font-size: 0.5rem;"></i>
+                        <span class="unidades">1</span>
+                        <i id="sumar" class="fa fa-plus" style="font-size: 0.5rem;"></i>
+                    </div>
+                    <div class="precio">
+                        <h4>Total precio</h4>
+                        <i class="fa fa-eur" style="font-size: 1em;"></i>
+                        <span class="montante" precio-base="15.95">15,95</span>
+                    </div>
+                    <div class="envio">
+                        <h4>Envío</h4>
+                        <i class="fa fa-truck" style="font-size: 0.8em;"></i>
+                        <span class="tiempo">3 días</span>
+                    </div>
+                </div>
+                <input class="carrito" type="button" value="Agregar al carrito">
+            </div>
+        </div>
+    </section>
+     <!-- Tercera sección -->
+    <section class="general" id="Infantil">
+        <div class="enunciado">
+            <h2 class="texto-enunciado">Literatura infantil</h2>
+        </div>
+        <div class="contenedor-cards">
+            <div class="card card9">
+                <img class="img-book" src="img/Libro9.png" alt="libro la vecina rubia">
+                <h3>Escuela de monstruos</h3>
+                <p class="descripcion">María y su mascota van juntas a todas partes: El problema es que la mascota hoy tiene mucha hambre... ¡y empieza a comerse todo lo que hay en la escuela! </p>
+                <div class="propiedades">
+                    <div class="cantidad">
+                        <h4>Cantidad</h4>
+                        <i id="restar" class="fa fa-minus" style="font-size: 0.5rem;"></i>
+                        <span class="unidades">1</span>
+                        <i id="sumar" class="fa fa-plus" style="font-size: 0.5rem;"></i>
+                    </div>
+                    <div class="precio">
+                        <h4>Total precio</h4>
+                        <i class="fa fa-eur" style="font-size: 1em;"></i>
+                        <span class="montante" precio-base="14.95">14.95</span>
+                    </div>
+                    <div class="envio">
+                        <h4>Envío</h4>
+                        <i class="fa fa-truck" style="font-size: 0.8em;"></i>
+                        <span class="tiempo">3 días</span>
+                    </div>
+                </div>
+                <input class="carrito" type="button" value="Agregar al carrito">
+            </div>
+            <div class="card card10">
+                <img class="img-book" src="img/Libro10.png" alt="libro la vecina rubia">
+                <h3>Arta en la jungla</h3>
+                <p class="descripcion">Arta está en peligro. ¿Conseguirá sobrevivir a la jungla? Arta necesitará encontrar a los científicos perdidos para evitar el fin del mundo.</p>
+                <div class="propiedades">
+                    <div class="cantidad">
+                        <h4>Cantidad</h4>
+                        <i id="restar" class="fa fa-minus" style="font-size: 0.5rem;"></i>
+                        <span class="unidades">1</span>
+                        <i id="sumar" class="fa fa-plus" style="font-size: 0.5rem;"></i>
+                    </div>
+                    <div class="precio">
+                        <h4>Total precio</h4>
+                        <i class="fa fa-eur" style="font-size: 1em;"></i>
+                        <span class="montante" precio-base="17.95">17,95</span>
+                    </div>
+                    <div class="envio">
+                        <h4>Envío</h4>
+                        <i class="fa fa-truck" style="font-size: 0.8em;"></i>
+                        <span class="tiempo">3 días</span>
+                    </div>
+                </div>
+                <input class="carrito" type="button" value="Agregar al carrito">
+            </div>
+            <div class="card card11">
+                <img class="img-book" src="img/Libro11.png" alt="libro la vecina rubia">
+                <h3>Los cazamisterios</h3>
+                <p class="descripcion">Cuando sus padres no están, siempre les pasan cosas raras a Ulises, Nora y Bruno. Por suerte, tienen un perro que habla cada vez que encuentra una pista</p>
+                <div class="propiedades">
+                    <div class="cantidad">
+                        <h4>Cantidad</h4>
+                        <i id="restar" class="fa fa-minus" style="font-size: 0.5rem;"></i>
+                        <span class="unidades">1</span>
+                        <i id="sumar" class="fa fa-plus" style="font-size: 0.5rem;"></i>
+                    </div>
+                    <div class="precio">
+                        <h4>Total precio</h4>
+                        <i class="fa fa-eur" style="font-size: 1em;"></i>
+                        <span class="montante" precio-base="19.95">19,95</span>
+                    </div>
+                    <div class="envio">
+                        <h4>Envío</h4>
+                        <i class="fa fa-truck" style="font-size: 0.8em;"></i>
+                        <span class="tiempo">3 días</span>
+                    </div>
+                </div>
+                <input class="carrito" type="button" value="Agregar al carrito">
+            </div>
+            <div class="card card12">
+                <img class="img-book" src="img/Libro12.png" alt="libro la vecina rubia">
+                <h3>Polikan 4</h3>
+                <p class="descripcion">Policán ha encontrado a su compañero más fiel-ino! Una historia sobre el bien... y el mal... y heroicidades diversas.</p>
+                <div class="propiedades">
+                    <div class="cantidad">
+                        <h4>Cantidad</h4>
+                        <i id="restar" class="fa fa-minus" style="font-size: 0.5rem;"></i>
+                        <span class="unidades">1</span>
+                        <i id="sumar" class="fa fa-plus" style="font-size: 0.5rem;"></i>
+                    </div>
+                    <div class="precio">
+                        <h4>Total precio</h4>
+                        <i class="fa fa-eur" style="font-size: 1em;"></i>
+                        <span class="montante" precio-base="15.95">15,95</span>
+                    </div>
+                    <div class="envio">
+                        <h4>Envío</h4>
+                        <i class="fa fa-truck" style="font-size: 0.8em;"></i>
+                        <span class="tiempo">3 días</span>
+                    </div>
+                </div>
+                <input class="carrito" type="button" value="Agregar al carrito">
+            </div>
+        </div>
+    </section>
+     <!-- Cuarta sección -->
+    <section class="general" id="Contacto">
+        <div class="enunciado">
+            <h2 class="texto-enunciado">Contacto</h2>
+        </div>
+        <!-- Incorporamos un div padre para la parte del formulario -->
+        <div class="contenedor-form">
+            <!-- Añadimos el div que contiene los dos bloques del formulario -->
+            <div class="contacto-info">
+                <!-- Bloque 1 del formulario-->
+                <div class="contacto">
+                    <h3>Contáctanos</h3>
+                    <form action="" id="form">
+                        <p class="datos">
+                            <label>Nombre</label>
+                            <input type="text" name="nombre" required> <!-- Campo obligatorio -->
+                        </p>
+                        <p class="datos">
+                            <label>Apellidos</label>
+                            <input type="text" name="apellidos">
+                        </p>
+                        <p class="datos">
+                            <label>Email</label>
+                            <input type="email" name="email" required> <!-- Campo obligatorio -->
+                        </p>
+                        <p class="datos">
+                            <label>Teléfono</label>
+                            <input type="tel" name="telefono">
+                        </p>
+                        <p class="block">
+                           <label>Mensaje</label> 
+                            <textarea name="mensaje" rows="3" required></textarea> <!-- Campo obligatorio -->
+                        </p>
+                        <button class="block">
+                            <input class="submit" type="submit">
+                        </button>
+                    </form>
+                </div>
+                <!-- Bloque 2 del formulario -->
+                <div class="informacion">
+                    <h4>Más información</h4>
+                    <ul>
+                        <i class="fa fa-home" style="font-size: 1.2rem;"></i>
+                        <li>Calle Diego Velázquez 12<br>45003 Toledo</li>
+                        <i class="fa fa-phone" style="font-size: 1.1rem;"></i>
+                        <li>925 999 998<br>666 663 664</li>
+                        <i class="fa fa-envelope" style="font-size: 1rem;"></i> 
+                        <li>info@libreriacrecer.es</li>
+                    </ul>
+                    <img class="logo" src="logo/Logo.svg" alt="logo">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Incorporamos el footer al documento -->
+    <footer>
+         <!-- Colocamos de nuevo el logo -->
+         <img class="logo-blanco" src="logo/logoblanco.svg" alt="logo">
+        <!-- Añadimos un contenedor general para distribuir los elementos internos -->
+        <div class="contenedor-listas">
+            <!-- Agregamos tres listas con los items más relevantes-->
+            <div class="lista-footer">
+                <span>Librería CRECER</span>
+                <ul class="uno">
+                    <li>Quiénes somos</li>
+                    <li>Novedades</li>
+                    <li>Literatura adultos</li>
+                    <li>Literatura infantil</li>
+                    <li>Contacta con nosotros</li>
+                </ul>
+            </div>
+            <div class="lista-footer">
+                <span>Ayuda</span>
+                <ul class="dos">
+                    <li>Pago seguro</li>
+                    <li>Devoluciones</li>
+                    <li>Gastos y formas de envío</li>
+                    <li>Preguntas frecuentes</li>
+                    <li>Estado de tu pedido</li>
+                </ul>
+            </div>
+            <div class="lista-footer">
+                <span>Información legal</span>
+                <ul class="tres">
+                    <li>Aviso legal</li>
+                    <li>Condiciones de uso</li>
+                    <li>Política de devoluciones</li>
+                    <li>Política de protección de datos</li>
+                    <li>Política de cookies</li>
+                </ul>
+            </div>
+            <!-- Ponemos los iconos de las redes sociales -->
+        </div>
+        <div class="redes">
+            <img src="img/Facebook.svg" alt="logo de facebook">
+            <img src="img/Instagram.svg" alt="logo de instagram">
+            <img src="img/Twitter.svg" alt="logo de twitter">
+            <img src="img/WhatsApp.svg" alt="logo de WhatsApp">
+        </div>
+        <!-- Incluímos mensaje final del copyright -->
+        <span class="copyright">Copyright © 2023 librería CRECER. Todos los derechos reservados</span>
+    </footer>
+</body>
+</html>

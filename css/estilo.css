@@ -1,0 +1,1228 @@
+/* Regla:
+    - Realizamos la normalización del documento */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Regla:
+    - Añadimos un color de fondo a la web
+    - Establecemos la tipografía por defecto de todo el documento */
+body{
+    background-color: #f2f6d0;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Regla:
+    - Posicionamos el div superior en relativo para que el párrafo pueda estar en absoluto dentro de él
+    - Ocultamos lo que sobresalga del contendor para realizar nuestra animación  */
+.contenedor-top {
+    background-color: #484d6d;
+    width: 100%;
+    height: 4vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Regla:
+    - Personalizamos y estilizamos el párrafo que va dentro
+    - El texto quedará centrado cuando javascript detenga la animación */
+.texto, .texto-animado{
+    height: 4vh;
+    padding: 4px 0;
+    font-size: 0.8em;
+    font-weight: 300;
+    text-align: center;
+    color: white;
+}
+
+/* Regla:
+    - Esta clase solo se utiliza para detener y reanudar la animación del texto con JS */
+.texto-animado {
+    animation: textoAnimado 10s linear infinite;
+}
+
+/* Keyframe:
+    - Consigue que el texto superior se desplace de derecha a izquierda */
+@keyframes textoAnimado {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-75%);
+    }
+}
+
+/* Regla:
+    -Personalizamos el header con color, dimensiones y alineación */
+header{
+    background-color: #ffffff;
+    height: 20vh;
+    padding: 0.6em 7em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Regla:
+    - Convertimos el logo a bloque para evitar el espacio del salto de linea */
+header img{
+    display: block;
+    width: 7em;
+}
+
+/* Regla:
+    - Estilizamos la barra de búsqueda y añadimos una transición para el efecto del hover sobre el borde */
+.busqueda{
+    width: 26em;
+    padding: 0.31em 0.62em;
+    border: 1px solid #cccccc;
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 6.25em 1em;
+    transition: 0.2s ease;
+}
+
+/* Regla:
+    - Oscurece el borde de la barra de búsqueda al hacer hover */
+.busqueda:hover{
+    border: 1px solid rgba(100, 95, 95, 0.8);
+}
+
+/* Regla:
+    - Resalta la barra de búsqueda al hacer click dentro del input */
+.busqueda:focus-within{
+    border: 1px solid #2f0a28;
+    box-shadow: 0 0 5px #2f0a28;
+}
+
+/* Regla:
+    - Estilizamos el input quitándole los bordes que trae por defecto
+    - Le agregamos su ancho con porcentaje para hacerlo responsive
+    - Le volvemos a poner la tipografía porque no la hereda */
+.busqueda input{
+    width: 78%;
+    border: none;
+    outline: none;
+    padding: 0.5em;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Regla:
+    - Estilizamos los iconos
+    - Agregamos la manita para dar la sensación de que se puede hacer clic
+    - Añadimos una transición para suavizar el efecto del hover */
+.busqueda i{
+    cursor: pointer;
+    color: #999;
+    transition: 0.1s ease-in-out;
+}
+.fa-microphone{
+    margin-right: 0.5em;
+}
+
+/* Regla:
+    - Cambiamos el color de los iconos al hacer hover */
+.busqueda i:hover{
+    color: rgb(25, 117, 255);
+    
+}
+
+/* Regla:
+    - Colocamos los enlaces de forma horizontal en el header */
+nav ul{
+    display: flex;
+} 
+
+/* Regla:
+    - Quitamos las viñetas a los li */
+nav li {
+    list-style: none;
+}
+
+/* Regla:
+    - Ponemos el texto de los enlaces en mayúsculas
+    - Le quitamos el color por defecto y le agregamos el nuestro */
+nav li a{
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #484d6d;
+}
+
+/* Regla:
+    - Espaciamos todos los enlaces por la derecha excepto el último */  
+    nav li:not(:last-child){
+        margin-right: 2em;
+    }
+
+/* Regla:
+    - Resaltamos el texto de los enlaces al hacer hover */
+nav li a:hover{
+    font-weight: 600;
+    color: #2f0a28;
+}
+
+.oculto{
+    display: none;
+}
+.abrir,.cerrar{
+    display: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: transparent;
+}
+
+/* Regla:
+    - Hacemos que el contenedor-carrousel ocupe el 100% del ancho
+    - Lo posicionamos en relative para poder colocar los botones de nuestro carrousel donde queremos
+    - Ocultamos el desbordamiento para que solo se muestre una imagen a la vez */
+.contenedor-carrousel{
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Regla:
+    - Al div carrousel le damos 4 veces más anchura para poder alojar las 4 imágenes
+    - Le ponemos display flex para colocarlas en horizontal */
+.carrousel{
+    width: 400%;
+    height: 76vh;
+    display: flex;
+}
+
+/* Regla:
+    - Hacemos un calc para el ancho e indicarle que cada sección ocupe solo un cuarto del contenedor carrousel
+    - Le damos el 100% de altura de su contenedor padre */
+.seccion-dinamica{
+    position: relative;
+    width: calc(100% / 4);
+    height: 100%;
+}
+
+/* Regla:
+    - Posicionamos el h1 y los h2 sobre las imágenes
+    - Los estilizamos */
+.titulo-principal, .titulo-secundario{
+    position: absolute;
+    top: 40%;
+    left: 10%;
+    font-size: 2rem;
+    color: #ffffff;
+}
+
+/* Regla:
+    - Estilizamos todos los botones del carrousel
+    - Los posicionamos en absolute para tener control sobre ellos */
+.boton{
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #ffcd37;
+    padding: 0.5em 2.1em;
+    border: none;
+    border-radius: 25px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    position: absolute;
+    cursor: pointer;
+    transition: 0.3s ease-in;
+}
+
+.boton:hover{
+    background-color: #ffb300
+}
+
+/* Regla individual para cada botón del carrousel:
+    - Posiciona cada botón debajo de los títulos */
+.boton1, .boton2, .boton3, .boton4{
+    top: 63%;
+    left: 10%;
+}
+
+/* Regla:
+    - Le decimos a las imágenes que ocupen el 100 % de la sección
+    - Nos aseguramos de que la imagen cubra todo el contenedor */
+.seccion-dinamica img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Regla:
+    - Ponemos los iconos de las flechas en horizontal
+    - Los posicionamos en absolute para que nos permita ubicarlos donde queremos
+    - Les damos medidas y los estilizamos */
+.boton-izq,
+.boton-der {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    padding: 10px;
+    font-size: 3em;
+    cursor: pointer;
+    transform: translate(0, -50%);
+    transition: 0.5 ease;
+}
+
+/* Regla:
+    - Llevamos el botón izquierdo a la izquierda del carrousel */
+.boton-izq {
+    left: 10px;
+}
+
+/* Regla:
+    - Llevamos el botón derecho a la derecha del carrousel */ 
+.boton-der {
+    right: 10px;
+}
+
+/*Regla:
+    - Le decimos a cada sección que ocupe el 100% del alto de la pantalla
+    - Le damos las propiedades flexibles y dirección en columna */
+.general{
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Regla:
+    - Estilizamos y alineamos el div que contiene el enunciado de cada sección */
+.enunciado{
+    background-color: #484d6d;
+    width: 100%;
+    height: 10%;
+    padding: 1em 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Regla:
+    - Le damos tamaño y color al texto de cada sección */
+.texto-enunciado{
+    font-size: 1.6rem;
+    color: white;
+}
+
+/* Regla:
+    - Le decimos al contenedor de las cards que ocupe el resto de la altura de la sección
+    - Le damos las propiedades de flex para alinear las cards horizontalmente */
+.contenedor-cards{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    overflow: auto;
+}
+
+/* Regla base para todas las cards:
+    - Damos dimensiones y color a todas las cards
+    - Las posicionamos en relativo para trabajar sus elementos internos
+    - Le añadimos un gradiente y unas sombras */   
+.card1, .card2, .card3, .card4,
+.card5, .card6, .card7, .card8,
+.card9, .card10, .card11, .card12 {
+    position: relative;
+    margin: 7em 2em 3em 2em;
+    width: 15.5em;
+    height: 23em;
+    text-align: center;
+    background-color: #fff;
+    background-image: linear-gradient(
+        to right top,
+        #8dc2c9 0,
+        #f9f9f9 25%,
+        #f9f9f9 75%,
+        #8dc2c9 100%);
+    border-radius: 15px;
+    box-shadow: 0 0.9em 1.5em rgba(0,0,0,0.1),
+    0 4em 4.3em -1.5em rgba(0,0,0,0.2);
+}
+
+/* Regla card2 a regla card12:
+    - Regla individual para cada card donde modifica el gradiente con el tono de la imagen que contiene */
+.card2{
+    background-image: linear-gradient(
+        to right top,
+        #ecc7c4 0,
+        #f9f9f9 25%,
+        #f9f9f9 75%,
+        #ecc7c4 100%);
+}
+
+.card3{
+    background-image: linear-gradient(
+        to right top,
+        #7f7f91 0,
+        #f9f9f9 25%,
+        #f9f9f9 75%,
+        #7f7f91 100%);
+}
+
+.card4{
+    background-image: linear-gradient(
+        to right top,
+        #cdb1a5 0,
+        #f9f9f9 25%,
+        #f9f9f9 75%,
+        #cdb1a5 100%);
+}
+
+.card5{
+    background-image: linear-gradient(
+        to right top,
+        #c1a8c1 0,
+        #f9f9f9 25%,
+        #f9f9f9 75%,
+        #c1a8c1 100%);
+}
+
+.card6{
+    background-image: linear-gradient(
+        to right top,
+        #d1ce9f 0,
+        #f9f9f9 25%,
+        #f9f9f9 75%,
+        #d1ce9f 100%);
+}
+
+.card7{
+    background-image: linear-gradient(
+        to right top,
+        #a2cb9c 0,
+        #f9f9f9 25%,
+        #f9f9f9 75%,
+        #a2cb9c 100%);
+}
+
+.card8{
+    background-image: linear-gradient(
+        to right top,
+        #cbcbcb 0,
+        #f9f9f9 25%,
+        #f9f9f9 75%,
+        #cbcbcb 100%);
+}
+
+.card9{
+    background-image: linear-gradient(
+        to right top,
+        #b1d3e1 0,
+        #f9f9f9 25%,
+        #f9f9f9 75%,
+        #b1d3e1 100%);
+}
+
+.card10{
+    background-image: linear-gradient(
+        to right top,
+        #f5c397 0,
+        #f9f9f9 25%,
+        #f9f9f9 75%,
+        #f5c397 100%);
+}
+
+.card11{
+    background-image: linear-gradient(
+        to right top,
+        #ad9bc5 0,
+        #f9f9f9 25%,
+        #f9f9f9 75%,
+        #ad9bc5 100%);
+}
+
+.card12{
+    background-image: linear-gradient(
+        to right top,
+        #6badce 0,
+        #f9f9f9 25%,
+        #f9f9f9 75%,
+        #6badce 100%);
+}
+
+/* Regla:
+    - Damos medidas a la imagen de cada card
+    - Activamos su keyframe */
+.img-book{
+    width: 40%;
+    height: 40%;
+    margin-top: -5em;
+    animation: flotar 1.2s ease-in-out infinite;
+}
+
+/* Regla:
+    - Estilizamos el h3 de las cards */
+h3{
+    margin: 0.5em 0.5em;
+    font-size: 1em;
+    color: #484d6d;
+}
+
+/* Regla:
+    - Estilizamos el párrafo de cada card */
+.descripcion{
+    font-size: 0.6em;
+    padding: 1em 1em;
+    color: #878787;
+    line-height: 1.4em;
+}
+
+/* Regla:
+    - Ajustamos la altura de div que contiene los elementos de cantidad, precio y envío
+    - Le damos propiedades flex para alinear los elementos horizontalmente */
+.propiedades{
+    height: 20%;
+    margin-top: 0.6em;
+    display: flex;
+}
+
+/* Regla:
+    - Centramos el texto de cada div
+    - Calculamos 1/3 del ancho para cada apartado */
+.cantidad, .precio, .envio {
+    margin-top: -5px;
+    text-align: center;
+    width: calc(100% / 3);
+}
+
+/* Regla:
+    - Estilizamos el h4 de cada apartado */
+h4{
+    font-size: 0.6rem;
+    color: #757575;
+    padding: 15%;
+}
+
+/* Regla:
+    - Le damos la apariencia de botón a los iconos "-" y "+" */
+.fa-minus, .fa-plus {
+    background-color: #ccc;
+    padding: 0.5em 0.6em;
+    color: #757575;
+    border-radius: 100px;
+    cursor: pointer;
+
+}
+
+/* Regla:
+    - Le damos tamaño y padding a número que representa las unidades de producto */ 
+.unidades{
+    padding: 5px;
+    font-size: 0.8rem;
+}
+
+/* Regla:
+    - Estilizamos y damos márgenes al icono de Euros */
+.fa-eur{
+    color: #757575;
+    margin: auto 3px;
+}
+
+/* Regla:
+    - Estilizamos y damos dimensiones y padding al número que marca el precio de producto */
+.montante {
+    font-size: 0.8rem;
+    color: #646363;
+    padding: auto 5px;
+}
+
+/* Regla:
+    - Estilizamos y damos márgenes al icono que representa el envío */
+.fa-truck{
+    color: #757575;
+    margin: auto 5px;
+}
+
+/* Regla:
+    - Estilizamos y damos dimensiones al texto que informa sobre el envío */
+.tiempo{
+    color: #757575;
+    font-size: 0.6rem;
+}
+
+/* Regla: 
+    - Estilizamos el botón inferior de las cards
+    - Le añadimos la tipografía porque no la hereda
+    - Le añadimos una transición para suavizar el efecto del hover */
+.carrito{
+    border: none;
+    padding: 2% 10%;
+    margin-top: 2em;
+    background-color: #ffcd37;
+    color: #000000;
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.6rem;
+    font-weight: 600;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 0.3s ease-in;
+
+}
+
+/* Regla: 
+    - Acentúa el color del botón de las cards al pasar el cursor por encima */
+.carrito:hover{
+    background-color: #ffb300;
+}
+
+/* Keyframe: 
+    - Anima las imágenes de las cards para que suban y bajen */
+@keyframes flotar {
+    0% {
+        transform: trnaslateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/*Regla: 
+    - Crea un contenedor general flexible para alinear el formulario interno */
+.contenedor-form {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+/*Regla: 
+    - Alinea los subcontenedores internos e indica el tamaño que ocupa cada uno */
+.contacto-info{
+    padding: 3%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+/*Regla:
+    - Da un ancho flexible al primer subcontenedor
+    - Establece su color de fondo
+    - Redondea las dos esquinas de la izquierda
+    - Alinea y estiliza el texto */
+.contacto{
+    width: auto;
+    background: #484d6d;
+    border-radius: 15px 0 0 15px;
+    padding-left: 0.6em;
+   
+}
+
+.contacto h3 {
+    color: #ffcd37;
+    font-size: 1.3rem;
+} 
+
+/*Regla: 
+    - Establece la disposición de los imputs especificando el ancho que ocupan */
+.contacto form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+/*Regla: 
+    - Estiliza los párrafos y les agrega un relleno */
+.contacto form p{
+    padding: 1em;
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+.datos{
+    margin-bottom: 0;
+}
+
+/*Regla general para todos los inputs del formulario: 
+    - Estiliza los inputs quitándole la apariencia por defecto
+    - Agrega un borde inferior blanco a cada uno
+    - Les añade la tipografía porque no la heredan */
+.contacto form input,
+.contacto form textarea,
+.contacto form button {
+    width: 100%;
+    padding: .7em;
+    border: none;
+    background: none;
+    outline: 0;
+    color: #ffffff;
+    font-weight: 300;
+    border-bottom: 1px solid #ffffff;
+    font-family: 'Poppins', sans-serif;
+}
+
+/*Regla individual para el botón: 
+    - Le da un color de fondo
+    - Pone su texto en mayúsculas
+    - Modifica algunas propiedades que le hemos puesto en la regla general de los inputs
+    - Redondea sus bordes
+    - Añade una transición para suavizar su hover */
+.contacto form .submit{
+    background-color: #ffcd37;
+    text-transform: uppercase;
+    padding: 1em;
+    border-bottom: none;
+    color: #000000;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: background-color 0.3s ease-in;
+}
+
+/*Regla: 
+    - Acentúa el color del botón al hacer hover */
+.contacto form .submit:hover{
+    background-color: #ffb300;
+}
+
+/*Regla:
+    - Indicamos a los inputs textarea y botón que ocupen todas las columnas de su contenedor */
+.contacto form .block{
+    grid-column: 1 / 3;
+}
+
+/*Regla: 
+    - Establece el ancho de este subcontenedor
+    - Redondea los dos bordes de la derecha
+    - Agrega relleno y distribuye sus elementos internos en columna */
+.informacion{
+    width: auto;
+    padding: 10% 10%;
+    background: #ffffff;
+    border-radius: 0 15px 15px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/*Regla: 
+    - Centra y rebaja el tamaño de los textos */
+.informacion{
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/*Regla: 
+    - Quita las viñetas de esta lista */
+.informacion ul{
+    list-style: none;
+}
+
+/*Regla: 
+    - Añade el logo al formulario con unas medidas concretas */
+.logo{
+    width: 5.5rem;
+    height: 5.5rem;
+    margin-top: 10%;
+    padding-bottom: 10%;
+    display: block;
+}
+
+/*Regla:
+    - Le da un margen superior a todos los iconos del formulario menos al primero */
+.informacion i:not(:first-child){
+    margin-top: 5%;
+}
+
+/*Regla:
+    - Ajusta las medidas del footer
+    - Le da el color de fondo
+    - Lo posciona en relativo para posicionar el texto inferior del copyright en absoluto */
+footer{
+    width: 100%;
+    height: 50vh;
+    padding: 0.6em 7em;
+    background-color: #484d6d;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/*Regla: 
+    - Alinea y da dimensiones a los menús del footer*/
+.contenedor-listas{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/*Regla: 
+    - Añade un logo al footer */
+.logo-blanco{
+    display: block;
+    width: 7em;
+}
+
+/*Regla: 
+    - Modifica el peso y el color del título de cada menú*/
+.lista-footer{
+    font-weight: 500;
+    color: #ffcd37;
+    text-align: center;
+}
+
+/*Regla:
+    - Estiliza los items de cada lista
+    - Le quita las viñetas a las listas */
+.uno, .dos, .tres{
+    margin-top: 16px;
+    font-size: 0.7rem;
+    color: #ffffff;
+    font-weight: 300;
+    list-style: none;
+}
+.redes{
+    width: 15em;
+}
+/*Regla: 
+    - Añade los iconos de las redes sociales */
+.redes img{
+    width: 15%;
+    cursor: pointer;
+}
+
+/*Regla: 
+    - Añade un margen a la derecha de cada icono excepto al último */
+.redes img:not(:last-child){
+    margin-right: 1em;
+}
+
+/*Regla:
+    - Incorpora el texto del copyright de forma fija en la parte inferior del pie de página */
+.copyright{
+    font-size: 0.7em;
+    font-weight: 300;
+    color: #ffffff;
+    position: absolute;
+    bottom: 8px;
+    left: calc(50% - 180px);
+}
+
+/* MEDIA QUERY */
+
+/* Aplicamos el primer punto de ruptura para dispositivos inferiores a 1024 pixeles */
+@media screen and (max-width: 1023px){
+
+    /*Regla:
+    - Detiene la animación del texto superior para tablets y móviles */
+    .texto-animado {
+        animation: none;
+    }
+
+    /*Regla:
+    - Disminuye el padding del header */
+    header{
+        padding: 0.3em 3em;
+    }
+
+    /*Regla:
+    - Modificamos el margen de la barra de búsqueda para dispositivos móviles. */
+    .busqueda {
+        margin: 1em 3em;
+    }
+
+    /*Regla:
+    - Quitamos el hover del borde para dispositivos táctiles */
+    .busqueda:hover{
+        border: 1px solid #cccccc;
+    }
+
+    /* Regla:
+    - Estilizamos de nuevo el menú y lo ocultamos en la parte superior de la pantalla.
+    - Subimos el z-index a 1 para que al desplegarse se superponga a lo que haya debajo.
+    - Establecemos una pequeña transición para suavizar el efecto cuando aparece y desaparece. */
+    nav{
+        top: -100vh;
+        right: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: #484d6d;
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1;
+        transition: 1s;;
+    }
+
+    /* Regla:
+    - Agregamos la clase desplegado para que el menú aparezca y ocupe el 100 % de la vista al hacer click */
+    .desplegado{
+        top: 0;
+        height: 100vh;
+    }
+
+    /* Regla:
+    - Colocamos el menú en vertical y le damos un ancho definido */
+    nav ul{
+        display: block;
+        width: 7em;
+    }
+
+    /*Regla:
+    - Cambiamos el color y el tamaño de los enlaces del menú */
+    nav ul a{
+        color: white;
+        font-size: 1.2rem;
+        cursor: auto;
+    }
+
+     /*Regla:
+    - Espaciamos los enlaces con un margen inferior */
+    nav li:not(:last-child){
+        margin-bottom: 2em;
+    }
+
+    /* Regla:
+    - Quitamos el efecto hover de los enlaces del menú */
+    nav li a:hover{
+        font-weight: normal;
+        color: #ffffff;
+    }
+
+     /*Regla:
+    - /* Activamos y estilizamos el menú hamburguesa */ 
+    .abrir{
+        display: block;
+        border: none;
+        background-color: transparent;
+        color: #484d6d;
+    }
+
+    /* Regla:
+    - Estilizamos el botón cerrar del desplegable y lo posicionamos arriba a la derecha */
+    .cerrar{
+        display: block;
+        border: none;
+        color: white;
+        position: absolute;
+        top: 3.5em;
+        right: 3.5em;
+    }
+
+    /* Regla:
+    - Modificamos la posición de los títulos del carrusell y reducimos el tamaño de la fuente */
+    .titulo-principal, .titulo-secundario{
+        position: absolute;
+        top: 30%;
+        left: 10%;
+        font-size: 1.5rem;
+    }
+
+    /* Regla:
+    - Modificamos la posición de los CTA del carrusell
+    - Quitamos el efecto del cursor pointer para dispositivos móviles */
+    .boton1, .boton2, .boton3, .boton4{
+        top: 48%;
+        left: 10%;
+        cursor: auto;
+    }
+
+    /* Regla:
+    - Quitamos el hover de los CTA para dispositivos móviles */
+    .boton:hover{
+        background-color: #ffcd37
+        
+    }
+
+    /* Regla:
+    - Modificamos la posición en el eje Y de los botones laterales del carrusell */
+    .boton-izq,.boton-der {
+        top: 40%
+    }
+
+    /* Regla:
+    - Activamos el flex-wrap para que las cards formen nuevos ejes horizontales */
+    .contenedor-cards{
+        flex-wrap: wrap;
+    }
+
+    /* Regla:
+    - Reducimos los márgenes de las cards */
+    .card{
+        margin: 7em 0.8em 2em;
+    }
+
+    /* Regla:
+    - Detenemos la animación de los libros de las cards */
+    .img-book{
+        animation: none;
+    }
+
+    /* Regla:
+    - Quitamos el efecto del cursor pointer en los botones que suman unidades en dispositivos móviles */
+    .fa-minus, .fa-plus {
+        cursor: auto;
+    }
+
+    /* Regla:
+    - Quitamos el efecto del cursor pointer en los botones de las cards en dispositivos móviles */
+    .carrito{
+        cursor: auto;
+    }
+
+    /* Regla:
+    - Quitamos el hover de los botones de las cards en dispositivos móviles */
+    .carrito:hover{
+        background-color: #ffcd37;
+    }
+
+    /* Regla:
+    - Quitamos el hover del submit del formulario en dispositivos móviles */
+    .contacto form .submit:hover{
+        background-color: #ffcd37;
+    }
+
+    /* Regla:
+    - Colocamos los elementos principales del footer en vertical */
+    footer{
+        height: auto;
+        padding: 0.5em 3em;
+        flex-direction: column;
+    }
+
+    /* Regla:
+    - Le damos un margen al logo del footer */
+    .logo-blanco{
+        margin: 2em;
+    }
+
+    /* Regla:
+    - Le damos un ancho concreto a los menús del footer */
+    .lista-footer{
+        width: 12em;
+    }
+    
+    /* Regla:
+    - Le damos un margen al menú de redes sociales */
+    .redes{
+        margin: 2em;
+        width: auto;
+    }
+
+    /* Regla:
+    - Redefinimos el ancho de los logos de las redes sociales
+    - Le quitamos el cursor pointer en dispositivos móviles */
+    .redes img{
+        width: 1.5em;
+        cursor: auto;
+    }
+
+    /* Regla:
+    - Cambiamos el tipo de posicionamiento del texto inferior del footer y lo centramos */
+    .copyright {
+        text-align: center;
+        position: static;
+    }
+}
+
+/* MEDIA QUERY */
+
+/* Aplicamos el segundo punto de ruptura para dispositivos inferiores a 548px */
+@media screen and (max-width: 547px){
+
+    /* Regla:
+    - Ocultamos la imormación de contacto que se encuentra encima del header en versión móvil */
+    .contenedor-top {
+       display: none;
+    }
+
+     /* Regla:
+    - Volvemos a modificar el padding del header en versión móvil */
+    header{
+        padding: 0.8em;
+    }
+
+     /* Regla:
+    - Reducimos el tamaño del logotipo en versión móvil */
+    header img{
+        width: 4em;
+    }
+
+     /* Regla:
+    - Volvemos a modificar el margen de la barra de búsqueda en versión móvil */
+    .busqueda{
+            margin: 1em 1em;
+    }
+
+    /* Regla:
+    - Ocultamos el micrófono de la barra de búsqueda en versión móvil */
+    .fa-microphone{
+        position: absolute;
+        top: -10vh;
+    }
+
+    /* Regla:
+    - Modificamos la posición de los títulos del carrusel en versión móvil */
+    .titulo-principal, .titulo-secundario{
+        position: absolute;
+        top: 2em;
+        left: 1em;
+    }
+
+    /* Regla:
+    - Centramos en el eje Y la posición del botón izquierdo del carrusel en versión móvil
+    - Reducimos su tamaño */
+    .boton-izq {
+        left: 0.1em;
+        font-size: 2em;
+        top: calc(100% / 2);
+    }
+
+    /* Regla:
+    - Centramos en el eje Y la posición del botón derecho del carrusel en versión móvil
+    - Reducimos su tamaño */
+    .boton-der{
+        right: 0.1em;
+        font-size: 2em;
+        top: calc(100% / 2);
+    }
+
+    /* Regla:
+    - Reducimos el padding del contenedor del texto que separa las secciones */
+    .enunciado{
+        padding: 0.5em 0;
+    }
+
+    /* Regla:
+    - Reducimos el tamaño de la fuente de los textos que separan las secciones */
+    .texto-enunciado{
+        font-size: 1.2em;
+        text-align: center;
+    }
+
+    /* Regla:
+    - Modificamos el margen y el relleno del menú propiedades de las cards */
+    .propiedades{
+        margin: 0;
+        padding: 0 0.3em;
+    }
+
+    /* Regla:
+    - Modificamos el margen superior del botón carrito de las cards */
+    .carrito{
+        margin-top: 1em;
+    }
+
+    /* Regla:
+    - Modificamos el relleno y la posición de los CTA del carrusel en dispositivos móviles */
+    .boton{
+        padding: 0.5em 1em;
+        top: 13em;
+        left: 1.5em;
+    }
+    
+    /* Regla:
+    - Coloca el formulario en posición vertical */
+    .contacto-info{
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Regla:
+    - Quitamos la anchura y altura predefinidas del primer bloque del formulario
+    - Hacemos que ahora queden redondeadas las esquinas de la parte superior
+    - Modificamos el relleno */
+    .contacto {
+        width: auto;
+        height: auto;
+        border-radius: 15px 15px 0 0;
+        padding: 0 0.5em;
+    }
+    
+    /* Regla:
+    - Ajustamos el margen del h3 del formulario
+    - Reducimos el tamaño de la fuente */
+    .contacto h3{
+        margin: 0.5em;
+        font-size: 1rem;
+
+    }
+
+    /* Regla:
+    - Modificamos el relleno de todos los campos del formulario */
+    .contacto form p,
+    .contacto form input,
+    .contacto form textarea,
+    .contacto form .submit{
+        padding: .3em;
+    
+    }
+
+    /* Regla:
+    - Quitamos la anchura y altura predefinidas del segundo bloque del formulario
+    - Hacemos que ahora queden redondeadas las esquinas de la parte inferior
+    - Modificamos el relleno */
+    .informacion {
+        width: auto;
+        height: auto;
+        padding: 1% 1%;
+        border-radius: 0 0 15px 15px;
+    }
+
+    /* Regla:
+    - Ajustamos el margen y relleno del h4 del formulario */
+    .informacion h4{
+        margin: 0.7em;
+        padding: 0;
+    }
+
+    /* Regla:
+    - Ajustamos el tamaño, el margen y el relleno del logo del formulario */
+    .logo{
+        width: 2.5rem;
+        margin-top: 0.3em;
+        padding-bottom: 0;
+    }
+
+     /* Regla:
+    - Ajustamos el relleno del footer */
+    footer {
+        padding: 0.5em 0.5em;        
+    }
+
+     /* Regla:
+    - Ajustamos el tamaño y el margen del logo del footer */
+    .logo-blanco {
+        width: 4em;
+        margin: 1em 0.3em;
+    }
+    
+    /* Regla:
+    - Colocamos los menús del footer en posición vertical */
+    .contenedor-listas {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    /* Regla:
+    - Separamos los bloques de menús con un margen superior, pero no se lo ponemos al primero */
+    .lista-footer:not(:first-child){
+        margin-top: 1em;
+    }
+
+    /* Regla:
+    - Separamos los items de los menús de su título dándoles un margen superior */
+    .uno,.dos,.tres{
+        margin-top: 0.5em;
+    }
+
+    /* Regla:
+    - Modificamos los márgenes de los iconos de las redes sociales */
+    .redes{
+        margin: 1em 0.3em;
+    }
+}
