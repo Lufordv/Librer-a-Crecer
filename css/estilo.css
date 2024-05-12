@@ -40,7 +40,7 @@ body{
 /* Regla:
     - Esta clase solo se utiliza para detener y reanudar la animación del texto con JS */
 .texto-animado {
-    animation: textoAnimado 10s linear infinite;
+    animation: textoAnimado 15s linear infinite;
 }
 
 /* Keyframe:
@@ -165,6 +165,55 @@ nav li a:hover{
     color: #2f0a28;
 }
 
+/* Regla:
+    - Añadimos una transición a los enlaces para suavizar el efecto de hover */
+
+.novedades,
+.adultos,
+.infantil,
+.contact {
+  transition: 0.3s;
+}
+
+/* Regla:
+    - Añadimos un decorador a los enlaces, pero lo dejamos invisible
+    y lo dejamos preparado para que haga una transición al hacer hover */
+
+.novedades::after,
+.adultos::after,
+.infantil::after,
+.contact::after {
+  content: "";
+  width: 0;
+  height: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5px;
+  background: #fff;
+  transition-duration: 0.5s;
+}
+
+/* Regla:
+    - Resaltamos el texto de los enlaces al hacer hover */
+.novedades:hover,
+.adultos:hover,
+.infantil:hover,
+.contact:hover {
+  color: #ffb300;
+}
+
+/* Regla:
+    - Hacemos que el decorador aparezca al hacer hover sobre los enlaces de forma suave */
+
+.novedades:hover::after,
+.adultos:hover::after,
+.infantil:hover::after,
+.contact:hover::after {
+  width: 100%;
+  background: #ffb300;
+}
+
 .oculto{
     display: none;
 }
@@ -228,11 +277,12 @@ nav li a:hover{
     font-weight: 600;
     position: absolute;
     cursor: pointer;
-    transition: 0.3s ease-in;
+    transition: 0.2s;
 }
 
-.boton:hover{
-    background-color: #ffb300
+.boton:hover {
+  background-color: #ffb300;
+  transform: scale(1.1);
 }
 
 /* Regla individual para cada botón del carrousel:
@@ -781,6 +831,7 @@ footer{
     color: #ffffff;
     font-weight: 300;
     list-style: none;
+    line-height: 2em;
 }
 .redes{
     width: 15em;
@@ -790,6 +841,11 @@ footer{
 .redes img{
     width: 15%;
     cursor: pointer;
+    transition: 0.3s;
+}
+
+.redes img:hover {
+  transform: translateY(-5px);
 }
 
 /*Regla: 
@@ -886,10 +942,22 @@ footer{
 
     /* Regla:
     - Quitamos el efecto hover de los enlaces del menú */
-    nav li a:hover{
-        font-weight: normal;
-        color: #ffffff;
-    }
+  .novedades:hover,
+  .adultos:hover,
+  .infantil:hover,
+  .contact:hover {
+    color: #fff;
+  }
+
+  /* Regla:
+    - Quitamos también el decorador de los enlaces al hacer hover */
+  .novedades:hover::after,
+  .adultos:hover::after,
+  .infantil:hover::after,
+  .contact:hover::after {
+    width: 0%;
+    background: none;
+  }
 
      /*Regla:
     - /* Activamos y estilizamos el menú hamburguesa */ 
